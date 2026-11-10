@@ -1,0 +1,123 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #101b35, #1d355d, #284b78);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 440px;
+}
+
+.login-card {
+    background: #ffffff;
+    padding: 42px;
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.login-logo {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.logo-icon {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 14px;
+    border-radius: 15px;
+    background: #eaf1ff;
+    color: #2456a6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+}
+
+.login-logo h2 {
+    font-weight: 750;
+    color: #172b4d;
+    margin-bottom: 5px;
+}
+
+.login-logo p {
+    color: #8491a5;
+    font-size: 13px;
+    margin: 0;
+}
+
+.login-heading {
+    margin-bottom: 25px;
+}
+
+    .login-heading h4 {
+        color: #172b4d;
+        font-weight: 700;
+        margin-bottom: 7px;
+    }
+
+    .login-heading p {
+        color: #8491a5;
+        font-size: 14px;
+    }
+
+.form-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #344563;
+}
+
+.form-control {
+    min-height: 47px;
+    border: 1px solid #dfe5ee;
+    border-radius: 9px;
+    font-size: 14px;
+}
+
+    .form-control:focus {
+        border-color: #3974c6;
+        box-shadow: 0 0 0 3px rgba(57, 116, 198, 0.12);
+    }
+
+.btn-primary {
+    min-height: 48px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 9px;
+    background: #2456a6;
+    font-weight: 600;
+}
+
+    .btn-primary:hover {
+        background: #193f7e;
+    }
+
+    .btn-primary:disabled {
+        opacity: 0.7;
+    }
+
+.login-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 30px;
+    padding-top: 18px;
+    border-top: 1px solid #edf0f5;
+    color: #9aa5b5;
+    font-size: 11px;
+}
+
+@media (max-width: 480px) {
+    .login-card {
+        padding: 30px 22px;
+    }
+}

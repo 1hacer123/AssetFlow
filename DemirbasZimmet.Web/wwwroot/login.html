@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AssetFlow | Giriş Yap</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-card">
+
+            <div class="login-logo">
+                <div class="logo-icon">
+                    <i class="bi bi-box-seam"></i>
+                </div>
+                <h2>AssetFlow</h2>
+                <p>Demirbaş ve Zimmet Yönetim Sistemi</p>
+            </div>
+
+            <div class="login-heading">
+                <h4>Hoş Geldiniz</h4>
+                <p>Devam etmek için hesabınıza giriş yapın.</p>
+            </div>
+
+            <form id="loginForm">
+
+                <div class="mb-3">
+                    <label for="eposta" class="form-label">E-posta</label>
+                    <input type="email"
+                           class="form-control"
+                           id="eposta"
+                           placeholder="ornek@assetflow.com"
+                           autocomplete="username"
+                           required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="parola" class="form-label">Parola</label>
+                    <input type="password"
+                           class="form-control"
+                           id="parola"
+                           placeholder="Parolanızı girin"
+                           autocomplete="current-password"
+                           required>
+                </div>
+
+                <div id="loginError" class="alert alert-danger d-none"></div>
+
+                <button type="submit" id="loginButton" class="btn btn-primary w-100">
+                    Giriş Yap
+                </button>
+
+            </form>
+
+            <div class="login-footer">
+                <span>© 2026 AssetFlow</span>
+                <span>Güvenli Yönetim Paneli</span>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

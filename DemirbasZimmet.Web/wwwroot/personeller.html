@@ -1,0 +1,310 @@
+﻿
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personeller | AssetFlow</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="app-wrapper">
+
+        <!-- SOL MENÜ -->
+        <aside class="sidebar">
+
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="bi bi-box-seam"></i>
+                </div>
+
+                <div>
+                    <h5>AssetFlow</h5>
+                    <small>Management System</small>
+                </div>
+            </div>
+
+            <div class="menu-label">ANA MENÜ</div>
+
+            <nav class="sidebar-menu">
+
+                <a href="index.html" class="menu-item">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="personeller.html" class="menu-item active">
+                    <i class="bi bi-people"></i>
+                    <span>Personeller</span>
+                </a>
+
+                <a href="demirbaslar.html" class="menu-item">
+                    <i class="bi bi-box-seam"></i>
+                    <span>Demirbaşlar</span>
+                </a>
+
+                <a href="zimmetler.html" class="menu-item">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Zimmet İşlemleri</span>
+                </a>
+
+                <a href="bakimlar.html" class="menu-item">
+                    <i class="bi bi-tools"></i>
+                    <span>Bakım İşlemleri</span>
+                </a>
+                <a href="kullanicilar.html" class="menu-item"
+                   data-role="Yonetici">
+                    <i class="bi bi-person-gear"></i>
+                    <span>Kullanıcı Yönetimi</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="menu-label">SİSTEM</div>
+
+                <a href="./ayarlar.html" class="menu-item">
+                    <i class="bi bi-gear"></i>
+                    <span>Ayarlar</span>
+                </a>
+
+                <div class="sidebar-footer">
+                    <div class="footer-icon">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <div>
+                        <strong>AssetFlow</strong>
+                        <small>Demirbaş Takip Sistemi</small>
+                    </div>
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- ANA İÇERİK -->
+        <main class="main-content">
+
+
+            <!-- SAYFA BAŞLIĞI -->
+
+            <div class="assignment-page-header">
+
+                <div class="assignment-heading">
+                    <div class="assignment-heading-icon">
+                        <i class="bi bi-people"></i>
+                    </div>
+
+                    <div>
+                        <div class="assignment-breadcrumb">
+                            ASSETFLOW <i class="bi bi-chevron-right"></i> YÖNETİM
+                        </div>
+
+                        <h2>Personel Yönetimi</h2>
+                        <p>Sistemde kayıtlı personelleri yönetin.</p>
+                    </div>
+                </div>
+
+                <div class="assignment-header-actions">
+                    <div class="assignment-admin">
+                        <i class="bi bi-person-circle"></i>
+                        <span id="personelSayfaKullaniciRol">Kullanıcı</span>
+                    </div>
+
+                    <button class="btn btn-primary-custom"
+                            data-bs-toggle="modal"
+                            data-bs-target="#personelModal"
+                            id="yeniPersonelBtn">
+                        <i class="bi bi-plus-lg me-1"></i>
+                        Yeni Personel Ekle
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- ÖZET KARTLARI -->
+            <div class="row g-3 mb-4">
+
+                <div class="col-md-6 col-xl-4">
+                    <div class="stat-card">
+                        <div class="stat-icon purple">
+                            <i class="bi bi-people"></i>
+                        </div>
+
+                        <div>
+                            <span class="stat-label">Toplam Personel</span>
+                            <h3 id="toplamPersonel">0</h3>
+                            <small>Sistemde kayıtlı personeller</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-4">
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <i class="bi bi-person-check"></i>
+                        </div>
+
+                        <div>
+                            <span class="stat-label">Aktif Personel</span>
+                            <h3 id="aktifPersonelSayisi">0</h3>
+                            <small>Çalışmaya devam edenler</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-4">
+                    <div class="stat-card">
+                        <div class="stat-icon orange">
+                            <i class="bi bi-person-dash"></i>
+                        </div>
+
+                        <div>
+                            <span class="stat-label">Pasif Personel</span>
+                            <h3 id="pasifPersonelSayisi">0</h3>
+                            <small>Pasife alınmış personeller</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- PERSONEL TABLOSU -->
+            <div class="content-card">
+
+                <div class="content-card-header">
+                    <div>
+                        <h5>Personel Listesi</h5>
+                        <p>Personel bilgilerini görüntüleyin ve yönetin.</p>
+                    </div>
+
+                    <div class="table-search">
+                        <i class="bi bi-search"></i>
+                        <input type="text"
+                               id="personelArama"
+                               placeholder="Personel ara...">
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table custom-table align-middle">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>AD SOYAD</th>
+                                <th>DEPARTMAN</th>
+                                <th>E-POSTA</th>
+                                <th>DURUM</th>
+                                <th>İŞLEMLER</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="personelTablosu">
+                            <tr>
+                                <td colspan="6" class="text-center py-4">
+                                    Personeller yükleniyor...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-footer">
+                    <span id="personelKayitBilgisi">
+                        Personeller yükleniyor...
+                    </span>
+                </div>
+
+            </div>
+
+            </section>
+
+            <footer class="dashboard-footer">
+                © 2026 AssetFlow - Demirbaş ve Zimmet Yönetim Sistemi
+            </footer>
+
+        </main>
+    </div>
+
+    <!-- PERSONEL EKLE / DÜZENLE MODALI -->
+    <div class="modal fade" id="personelModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalBaslik">Yeni Personel Ekle</h5>
+                    <button type="button" class="btn-close"
+                            data-bs-dismiss="modal" aria-label="Kapat"></button>
+                </div>
+
+                <form id="personelForm">
+                    <div class="modal-body">
+
+                        <input type="hidden" id="personelId">
+
+                        <div class="mb-3">
+                            <label for="ad" class="form-label">Ad</label>
+                            <input type="text" class="form-control"
+                                   id="ad" maxlength="100" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="soyad" class="form-label">Soyad</label>
+                            <input type="text" class="form-control"
+                                   id="soyad" maxlength="100" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="departman" class="form-label">Departman</label>
+                            <input type="text" class="form-control"
+                                   id="departman" maxlength="100" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="eposta" class="form-label">E-posta</label>
+                            <input type="email" class="form-control"
+                                   id="eposta" maxlength="200" required>
+                        </div>
+
+                        <div id="formHata" class="alert alert-danger d-none mb-0"></div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light"
+                                data-bs-dismiss="modal">
+                            İptal
+                        </button>
+
+                        <button type="submit" class="btn btn-primary-custom"
+                                id="kaydetBtn">
+                            Kaydet
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- BİLDİRİM -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="bildirimToast" class="toast" role="alert">
+            <div class="toast-header">
+                <strong class="me-auto">AssetFlow</strong>
+                <button type="button" class="btn-close"
+                        data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body" id="bildirimMesaji"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/personeller.js"></script>
+
+</body>
+</html>

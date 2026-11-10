@@ -1,0 +1,301 @@
+﻿
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kullanıcı Yönetimi | AssetFlow</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="app-wrapper">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="bi bi-box-seam"></i>
+                </div>
+                <div>
+                    <h5>AssetFlow</h5>
+                    <small>Management System</small>
+                </div>
+            </div>
+
+            <div class="menu-label">ANA MENÜ</div>
+
+            <nav class="sidebar-menu">
+
+                <a href="index.html" class="menu-item">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="personeller.html" class="menu-item">
+                    <i class="bi bi-people"></i>
+                    <span>Personeller</span>
+                </a>
+
+                <a href="demirbaslar.html" class="menu-item">
+                    <i class="bi bi-box-seam"></i>
+                    <span>Demirbaşlar</span>
+                </a>
+
+                <a href="zimmetler.html" class="menu-item">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Zimmet İşlemleri</span>
+                </a>
+
+                <a href="bakimlar.html" class="menu-item">
+                    <i class="bi bi-tools"></i>
+                    <span>Bakım İşlemleri</span>
+                </a>
+
+                <a href="kullanicilar.html"
+                   class="menu-item active d-none"
+                   data-role="Yonetici">
+                    <i class="bi bi-person-gear"></i>
+                    <span>Kullanıcı Yönetimi</span>
+                </a>
+
+            </nav>
+        </aside>
+
+        <!-- ANA İÇERİK -->
+        <main class="main-content">
+
+            <!-- ÜST BAR -->
+            <header class="topbar d-flex justify-content-between align-items-center">
+                <div>
+                    <h4 class="mb-1">Kullanıcı Yönetimi</h4>
+                    <small class="text-muted">
+                        Sistem kullanıcılarını ve yetkilerini yönetin.
+                    </small>
+                </div>
+
+                <div class="d-flex align-items-center gap-3">
+                    <div class="text-end">
+                        <div id="oturumKullaniciAdi" class="fw-semibold">
+                            Kullanıcı
+                        </div>
+                        <small id="oturumKullaniciRol" class="text-muted">
+                            Rol
+                        </small>
+                    </div>
+
+                    <button class="btn btn-outline-danger btn-sm"
+                            onclick="assetFlowLogout()">
+                        <i class="bi bi-box-arrow-right"></i>
+                        Çıkış Yap
+                    </button>
+                </div>
+            </header>
+
+            <!-- SAYFA İÇERİĞİ -->
+            <div class="container-fluid py-4">
+
+                <!-- ÖZET KARTLARI -->
+                <div class="row g-3 mb-4">
+
+                    <div class="col-md-4">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body">
+                                <div class="text-muted small">
+                                    Toplam Kullanıcı
+                                </div>
+                                <h3 id="toplamKullanici" class="mt-2 mb-0">0</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body">
+                                <div class="text-muted small">
+                                    Aktif Kullanıcı
+                                </div>
+                                <h3 id="aktifKullanici" class="mt-2 mb-0">0</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body">
+                                <div class="text-muted small">
+                                    Pasif Kullanıcı
+                                </div>
+                                <h3 id="pasifKullanici" class="mt-2 mb-0">0</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- KULLANICI LİSTESİ -->
+                <div class="card shadow-sm border-0">
+
+                    <div class="card-header bg-white py-3 d-flex
+                                justify-content-between align-items-center">
+
+                        <div>
+                            <h5 class="mb-1">Sistem Kullanıcıları</h5>
+                            <small class="text-muted">
+                                Kayıtlı kullanıcıları görüntüleyin ve yönetin.
+                            </small>
+                        </div>
+
+                        <button class="btn btn-primary"
+                                data-bs-toggle="modal"
+                                data-bs-target="#kullaniciEkleModal">
+                            <i class="bi bi-plus-lg"></i>
+                            Yeni Kullanıcı
+                        </button>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div id="kullaniciHata"
+                             class="alert alert-danger d-none"></div>
+
+                        <div class="table-responsive">
+
+                            <table class="table table-hover align-middle">
+
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Ad Soyad</th>
+                                        <th>E-posta</th>
+                                        <th>Rol</th>
+                                        <th>Durum</th>
+                                        <th>Oluşturulma Tarihi</th>
+                                        <th>İşlemler</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="kullaniciTablosu">
+                                    <tr>
+                                        <td colspan="7" class="text-center py-4">
+                                            Kullanıcılar yükleniyor...
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- YENİ KULLANICI MODALI -->
+    <div class="modal fade" id="kullaniciEkleModal" tabindex="-1"
+         aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Yeni Kullanıcı Oluştur</h5>
+                    <button type="button" class="btn-close"
+                            data-bs-dismiss="modal"></button>
+                </div>
+
+                <form id="kullaniciForm">
+
+                    <div class="modal-body">
+
+                        <div id="formHata"
+                             class="alert alert-danger d-none"></div>
+
+                        <div class="mb-3">
+                            <label for="adSoyad" class="form-label">
+                                Ad Soyad
+                            </label>
+                            <input type="text" class="form-control"
+                                   id="adSoyad" required maxlength="100">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="eposta" class="form-label">
+                                E-posta
+                            </label>
+                            <input type="email" class="form-control"
+                                   id="eposta" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="parola" class="form-label">
+                                Geçici Parola
+                            </label>
+                            <input type="password" class="form-control"
+                                   id="parola" required minlength="12">
+                            <small class="text-muted">
+                                Parola en az 12 karakter olmalıdır.
+                            </small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="rol" class="form-label">
+                                Kullanıcı Rolü
+                            </label>
+                            <select id="rol" class="form-select" required>
+                                <option value="BilgiIslem" selected>
+                                    Bilgi İşlem
+                                </option>
+                                <option value="Yonetici">
+                                    Yönetici
+                                </option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light"
+                                data-bs-dismiss="modal">
+                            İptal
+                        </button>
+
+                        <button type="submit" class="btn btn-primary"
+                                id="kullaniciKaydetBtn">
+                            <i class="bi bi-check-lg"></i>
+                            Kullanıcı Oluştur
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- BİLDİRİM -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="kullaniciToast" class="toast" role="alert">
+            <div class="toast-body" id="kullaniciToastMesaj"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/kullanicilar.js"></script>
+
+</body>
+</html>

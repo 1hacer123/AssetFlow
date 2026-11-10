@@ -1,0 +1,29 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# .NET
+**/bin/
+**/obj/
+
+# IDE
+.idea/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+
+# Secrets
+secrets.json
+# Local development settings
+**/appsettings.Development.json
